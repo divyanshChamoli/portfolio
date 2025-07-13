@@ -40,13 +40,3 @@
   --font-pixel-grid-bold: "pixel-grid-bold", sans-serif;
 }
 
-body {
-  @apply m-0;
-  font-family: var(--font-pixel-grid-medium);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-code {
-  font-family: var(--font-press-start);
-}
