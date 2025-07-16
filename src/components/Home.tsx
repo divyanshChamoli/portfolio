@@ -14,9 +14,9 @@ import Icon12 from '../assets/icon/icon12.jpg'
 import Icon13 from '../assets/icon/icon13.jpg'
 import Icon14 from '../assets/icon/icon14.jpg'
 import Icon15 from '../assets/icon/icon15.png'
-import Icon16 from '../assets/icon/icon16.png'
-import Icon17 from '../assets/icon/icon17.png'
-import Icon18 from '../assets/icon/icon18.png'
+// import Icon16 from '../assets/icon/icon16.png'
+// import Icon17 from '../assets/icon/icon17.png'
+// import Icon18 from '../assets/icon/icon18.png'
 import Icon19 from '../assets/icon/icon19.png'
 import Icon20 from '../assets/icon/icon20.png'
 
@@ -91,4 +91,4 @@ export const Home = () => {
   )
 }
 
-const colors = ['#00132D', '#02498A', '#1BA7FF']
+// const colors = ['#00132D', '#02498A', '#1BA7FF']
