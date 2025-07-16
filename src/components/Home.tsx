@@ -45,7 +45,7 @@ const imagePositions = [
 
 export const Home = () => {
   return (
-    <div className="relative h-[396px] w-[1584px] overflow-hidden flex justify-center items-center flex-col gap-4 bg-[url(./src/assets/matrix.jpg)] bg-cover bg-center">
+    <div className="relative h-[396px] w-[1584px] overflow-hidden flex justify-center items-center flex-col gap-4 bg-[url(./matrix.jpg)] bg-cover bg-center">
       {/* <div className=" z-20 absolute bottom-0 sm:left-10 left-35 translate-y-1/3 rounded-full sm:size-[350px] size-[400px] bg-[url(./src/assets/pic.png)] bg-cover bg-center "></div> */}
 
       {/* <div className="absolute inset-0 bg-black/70" /> */}
