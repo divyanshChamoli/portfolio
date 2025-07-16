@@ -19,6 +19,7 @@ import Icon15 from '../assets/icon/icon15.png'
 // import Icon18 from '../assets/icon/icon18.png'
 import Icon19 from '../assets/icon/icon19.png'
 import Icon20 from '../assets/icon/icon20.png'
+import Bg from '../assets/matrix.jpg'
 
 const imagePositions = [
   { src: Icon1, top: 12, left: 3, depth: 50 }, // Top Left
@@ -45,7 +46,16 @@ const imagePositions = [
 
 export const Home = () => {
   return (
-    <div className="relative h-[396px] w-[1584px] overflow-hidden flex justify-center items-center flex-col gap-4 bg-[url(./matrix.jpg)] bg-cover bg-center">
+    <div
+      className="relative h-[396px] w-[1584px] overflow-hidden flex justify-center items-center flex-col gap-4 "
+      style={{
+        backgroundImage: `url(${Bg})`,
+        backgroundPosition: 'center',
+        backgroundSize: 'cover',
+        backgroundRepeat: 'no-repeat',
+      }}
+    >
+      {/* <img src={Bg} alt="" /> */}
       {/* <div className=" z-20 absolute bottom-0 sm:left-10 left-35 translate-y-1/3 rounded-full sm:size-[350px] size-[400px] bg-[url(./src/assets/pic.png)] bg-cover bg-center "></div> */}
 
       {/* <div className="absolute inset-0 bg-black/70" /> */}
