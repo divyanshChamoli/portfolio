@@ -20,19 +20,22 @@ import Icon15 from '../assets/icon/icon15.png'
 import Icon19 from '../assets/icon/icon19.png'
 import Icon20 from '../assets/icon/icon20.png'
 import Bg from '../assets/matrix.jpg'
+import { useRef } from 'react'
+import { useMotionValue, useSpring } from 'framer-motion'
+import { ParallaxImage } from './ParallaxImage'
 
 const imagePositions = [
   { src: Icon1, top: 12, left: 3, depth: 50 }, // Top Left
   { src: Icon2, top: -1, left: 12, depth: 50 }, // Top Left
   { src: Icon3, top: 11, left: 87, depth: 50 }, // Top Right
-  { src: Icon4, top: 31, left: 32, depth: 30 }, // Middle Left, TAILWIND
+  { src: Icon4, top: 30, left: 30, depth: 0 }, // Middle Left, TAILWIND
   { src: Icon5, top: 42, left: 93, depth: 50 }, // Middle Right
-  { src: Icon8, top: 53, left: -0.5, depth: 10 }, // Middle Left
+  { src: Icon8, top: 53, left: -0.5, depth: 30 }, // Middle Left
   { src: Icon7, top: -2, left: 28, depth: 50 }, // Bottom Left
   { src: Icon6, top: 57, left: 28, depth: 55 }, // Bottom Right
   { src: Icon9, top: 75, left: 90, depth: 50 }, // Bottom Right
-  { src: Icon10, top: 92, left: 32, depth: 10 }, // Bottom Right
-  { src: Icon11, top: -2, left: 78, depth: 10 }, // Top Right
+  { src: Icon10, top: 92, left: 32, depth: 20 }, // Bottom Right
+  { src: Icon11, top: -2, left: 78, depth: 20 }, // Top Right
   { src: Icon12, top: -5, left: 57, depth: 50 }, // Bottom Left
   { src: Icon13, top: 18, left: 19, depth: 20 }, // Middle Right
   { src: Icon14, top: 7, left: 45, depth: 30 }, // Bottom Left
@@ -45,9 +48,32 @@ const imagePositions = [
 ]
 
 export const Home = () => {
+  const containerRef = useRef<HTMLDivElement>(null)
+  const mouseX = useMotionValue(0)
+  const mouseY = useMotionValue(0)
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!containerRef.current) return
+    const rect = containerRef.current.getBoundingClientRect()
+    const x = e.clientX - rect.left
+    const y = e.clientY - rect.top
+
+    // Increased multiplier and added value clamping for uniform movement
+    const normX = Math.max(-1, Math.min(1, (x / rect.width - 0.5) * 1.2))
+    const normY = Math.max(-1, Math.min(1, (y / rect.height - 0.5) * 1.2))
+
+    mouseX.set(normX)
+    mouseY.set(normY)
+  }
+
+  const springX = useSpring(mouseX, { damping: 40, stiffness: 240 })
+  const springY = useSpring(mouseY, { damping: 40, stiffness: 240 })
+
   return (
     <div
-      className="relative h-[396px] w-[1584px] overflow-hidden flex justify-center items-center flex-col gap-4 "
+      className="relative h-[396px] w-[1584px] overflow-hidden flex justify-center items-center flex-col gap-4"
+      ref={containerRef}
+      onMouseMove={handleMouseMove}
       style={{
         backgroundImage: `url(${Bg})`,
         backgroundPosition: 'center',
@@ -55,31 +81,24 @@ export const Home = () => {
         backgroundRepeat: 'no-repeat',
       }}
     >
-      {/* <img src={Bg} alt="" /> */}
-      {/* <div className=" z-20 absolute bottom-0 sm:left-10 left-35 translate-y-1/3 rounded-full sm:size-[350px] size-[400px] bg-[url(./src/assets/pic.png)] bg-cover bg-center "></div> */}
-
-      {/* <div className="absolute inset-0 bg-black/70" /> */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black" />
-      <div className="pb-8 w-full h-full z-0 flex flex-col justify-end items-end ">
-        <div className="-z-10 absolute top-0 left-0 bottom-0 right-0 w-full h-full ">
+      <div className="pb-8 w-full h-full z-0 flex flex-col justify-end items-end">
+        <div className="-z-10 absolute top-0 left-0 bottom-0 right-0 w-full h-full">
           {imagePositions.map((position, index) => (
-            <img
+            <ParallaxImage
               key={index}
               src={position.src}
-              alt={`icon-${index + 1}`}
-              className="absolute w-[50px]"
-              style={{
-                top: `${position.top}%`,
-                left: `${position.left}%`,
-                transform: `scale(${1 + position.depth / 100})`,
-              }}
+              position={{ top: position.top, left: position.left }}
+              depth={position.depth}
+              springX={springX}
+              springY={springY}
             />
           ))}
         </div>
 
-        <div className=" w-3/4 flex flex-col justify-center items-center gap-12">
-          <div className="flex flex-col justify-center items-center ">
-            <h1 className="text-[76px] font-pixel-grid-medium text-white  ">
+        <div className="w-3/4 flex flex-col justify-center items-center gap-12">
+          <div className="flex flex-col justify-center items-center">
+            <h1 className="text-[76px] font-pixel-grid-medium text-white">
               {' '}
               Divyansh Chamoli{' '}
             </h1>
@@ -88,9 +107,9 @@ export const Home = () => {
               Full Stack Developer{' '}
             </h2>
           </div>
-          <div className={` relative h-fit w-fit  `}>
-            <img src={TextBox} alt="bg" className=" w-[740px]" />
-            <p className="w-11/12 text-[18px]  font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2  text-white ">
+          <div className={`relative h-fit w-fit`}>
+            <img src={TextBox} alt="bg" className="w-[740px]" />
+            <p className="w-11/12 text-[18px] font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white">
               The most important skill for a computer scientist is problem
               solving ~ Bill Gates
             </p>
