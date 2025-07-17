@@ -21,7 +21,7 @@ import Icon19 from '../assets/icon/icon19.png'
 import Icon20 from '../assets/icon/icon20.png'
 import Bg from '../assets/matrix.jpg'
 import { useRef } from 'react'
-import { useMotionValue, useSpring } from 'framer-motion'
+import { useMotionValue, useSpring, motion } from 'framer-motion'
 import { ParallaxImage } from './ParallaxImage'
 
 const imagePositions = [
@@ -58,7 +58,6 @@ export const Home = () => {
     const x = e.clientX - rect.left
     const y = e.clientY - rect.top
 
-    // Increased multiplier and added value clamping for uniform movement
     const normX = Math.max(-1, Math.min(1, (x / rect.width - 0.5) * 1.2))
     const normY = Math.max(-1, Math.min(1, (y / rect.height - 0.5) * 1.2))
 
@@ -74,13 +73,43 @@ export const Home = () => {
       className="relative h-[396px] w-[1584px] overflow-hidden flex justify-center items-center flex-col gap-4"
       ref={containerRef}
       onMouseMove={handleMouseMove}
-      style={{
-        backgroundImage: `url(${Bg})`,
-        backgroundPosition: 'center',
-        backgroundSize: 'cover',
-        backgroundRepeat: 'no-repeat',
-      }}
     >
+      {/* Matrix Background with two divs for seamless loop */}
+      <div className="absolute inset-0 overflow-hidden">
+        <motion.div
+          className="absolute inset-0 h-[200%]"
+          initial={{ y: '-50%' }}
+          animate={{ y: '0%' }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: 'linear',
+            repeatType: 'loop',
+          }}
+        >
+          {/* First background image */}
+          <div
+            className="absolute inset-0 h-1/2"
+            style={{
+              backgroundImage: `url(${Bg})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+            }}
+          />
+          {/* Second background image */}
+          <div
+            className="absolute inset-0 top-1/2 h-1/2"
+            style={{
+              backgroundImage: `url(${Bg})`,
+              backgroundPosition: 'center',
+              backgroundSize: 'cover',
+              backgroundRepeat: 'no-repeat',
+            }}
+          />
+        </motion.div>
+      </div>
+
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black" />
       <div className="pb-8 w-full h-full z-0 flex flex-col justify-end items-end">
         <div className="-z-10 absolute top-0 left-0 bottom-0 right-0 w-full h-full">
