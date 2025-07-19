@@ -16,8 +16,8 @@ export function ParallaxImage({
   depth,
   springX,
   springY,
-  width,
-  height,
+  // width,
+  // height,
 }: ParallaxImageProps) {
   const imageX = useTransform(springX, (v) => `${-v * depth}px`);
   const imageY = useTransform(springY, (v) => `${-v * depth}px`);
@@ -26,7 +26,7 @@ export function ParallaxImage({
     <motion.img
       src={src}
       alt=""
-      className={`absolute w-[72px] `}
+      className={`absolute w-[40px] sm:w-[50px] md:w-[60px] lg:w-[72px]  `}
       initial={{
         scale: 1,
         opacity: 1,
@@ -46,8 +46,8 @@ export function ParallaxImage({
         x: imageX,
         y: imageY,
         filter: `contrast(110%)`,
-        width: width ? `${width * 4}px` : "",
-        height: height ? `${height * 4}px` : "",
+        // width: width ? `${width * 4}px` : "",
+        // height: height ? `${height * 4}px` : "",
         transform: `scale(${1 + depth / 100})`,
       }}
     />

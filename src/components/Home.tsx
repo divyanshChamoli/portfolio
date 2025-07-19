@@ -70,7 +70,7 @@ export const Home = () => {
 
   return (
     <div
-      className="relative h-[396px] w-[1584px] overflow-hidden flex justify-center items-center flex-col gap-4"
+      className="relative h-2/3 sm:h-[500px] md:h-[396px] w-screen overflow-hidden flex justify-center items-center flex-col gap-4"
       ref={containerRef}
       onMouseMove={handleMouseMove}
     >
@@ -111,7 +111,7 @@ export const Home = () => {
       </div>
 
       <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-black/50 to-black" />
-      <div className="pb-8 w-full h-full z-0 flex flex-col justify-end items-end">
+      <div className="pb-8 w-full h-full z-0 flex flex-col lg:justify-end lg:items-end justify-center items-center">
         <div className="-z-10 absolute top-0 left-0 bottom-0 right-0 w-full h-full">
           {imagePositions.map((position, index) => (
             <ParallaxImage
@@ -125,20 +125,24 @@ export const Home = () => {
           ))}
         </div>
 
-        <div className="w-3/4 flex flex-col justify-center items-center gap-12">
+        <div className="w-full xl:w-3/4 h-1/2 lg:h-auto flex flex-col justify-center items-center gap-12">
           <div className="flex flex-col justify-center items-center">
-            <h1 className="text-[76px] font-pixel-grid-medium text-white">
+            <h1 className=" max-[515px]:text-[28px] text-[46px] sm:text-[56px] md:text-[66px] lg:text-[76px] font-pixel-grid-medium text-white">
               {' '}
               Divyansh Chamoli{' '}
             </h1>
-            <h2 className="text-[48px] font-pixel-grid-bold text-white">
+            <h2 className=" max-[515px]:text-[18px] text-[24px] sm:text-[32px] md:text-[40px] lg:text-[48px] font-pixel-grid-bold text-white">
               {' '}
               Full Stack Developer{' '}
             </h2>
           </div>
-          <div className={`relative h-fit w-fit`}>
-            <img src={TextBox} alt="bg" className="w-[740px]" />
-            <p className="w-11/12 text-[18px] font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white">
+          <div className={`relative h-fit w-fit mx-16 md:mx-0`}>
+            <img
+              src={TextBox}
+              alt="bg"
+              className="md:w-[740px] w-screen h-[50px] md:h-auto "
+            />
+            <p className="w-11/12 text-center max-[515px]:text-[10px] text-[12px] sm:text-[16px] md:text-[18px] font-bold absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-white">
               The most important skill for a computer scientist is problem
               solving ~ Bill Gates
             </p>
