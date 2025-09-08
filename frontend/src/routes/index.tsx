@@ -1,3 +1,4 @@
+import { RubiksCube } from '@/components/RubiksCube/RubiksCube'
 import { createFileRoute } from '@tanstack/react-router'
 
 export const Route = createFileRoute('/')({
@@ -6,6 +7,8 @@ export const Route = createFileRoute('/')({
 
 function App() {
   return (
-   <div className=' bg-red-500 '> Hi </div>
+    <div className='h-screen w-screen'>
+      <RubiksCube />
+    </div>
   )
 }
