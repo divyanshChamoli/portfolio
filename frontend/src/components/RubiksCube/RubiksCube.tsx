@@ -6,6 +6,7 @@ import { OrbitControls, Environment, Stats } from '@react-three/drei'
 export const RubiksCube = () => {
   return (
     <Canvas camera={{ position: [3, 3, 3] }}>
+      <Stats/>
       <Suspense>
         <Environment preset="forest" />
       </Suspense>
