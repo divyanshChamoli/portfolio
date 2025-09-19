@@ -9,8 +9,8 @@ export const Route = createFileRoute('/')({
 function App() {
   return (
     <div className='h-screen w-screen'>
-      {/* <RubiksCube /> */}
-      <MagicCube/>
+      <RubiksCube />
+      {/* <MagicCube/> */}
     </div>
   )
 }
